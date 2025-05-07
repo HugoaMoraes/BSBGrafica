@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/user-attachments/assets/a10895ea-3278-4d45-97bd-4f76b4742525" width="300px" />
+<img src="https://github.com/user-attachments/assets/a3bf16a1-28db-4f8a-b75f-2af6b943c611" width="300px" />
 </div>
 
 # Site BSB Gráfica
