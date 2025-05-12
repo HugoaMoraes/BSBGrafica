@@ -47,6 +47,16 @@
   scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+  border: 1px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 6px;
+}
+
 /*--------------------------------------------------------------
 # General Styling & Shared Classes
 --------------------------------------------------------------*/
