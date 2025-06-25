@@ -86,59 +86,6 @@ h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
 }
-
-/* PHP Email Form Messages
-------------------------------*/
-.php-email-form .error-message {
-  display: none;
-  background: #df1529;
-  color: #ffffff;
-  text-align: left;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .sent-message {
-  display: none;
-  color: #ffffff;
-  background: #059652;
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-  font-weight: 600;
-}
-
-.php-email-form .loading {
-  display: none;
-  background: var(--surface-color);
-  text-align: center;
-  padding: 15px;
-  margin-bottom: 24px;
-}
-
-.php-email-form .loading:before {
-  content: '';
-  display: inline-block;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  margin: 0 10px -6px 0;
-  border: 3px solid var(--accent-color);
-  border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
-}
-
-@keyframes php-email-form-loading {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /*--------------------------------------------------------------
 # Global Header
 --------------------------------------------------------------*/
@@ -1197,13 +1144,13 @@ section,
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact {
   height: 100%;
 }
 
-.contact .php-email-form input[type='text'],
-.contact .php-email-form input[type='email'],
-.contact .php-email-form textarea {
+.contact input[type='text'],
+.contact input[type='email'],
+.contact textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1217,19 +1164,19 @@ section,
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type='text']:focus,
-.contact .php-email-form input[type='email']:focus,
-.contact .php-email-form textarea:focus {
+.contact input[type='text']:focus,
+.contact input[type='email']:focus,
+.contact textarea:focus {
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type='text']::placeholder,
-.contact .php-email-form input[type='email']::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact input[type='text']::placeholder,
+.contact input[type='email']::placeholder,
+.contact textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type='submit'] {
+.contact button[type='submit'] {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1238,7 +1185,7 @@ section,
   border-radius: 12px;
 }
 
-.contact .php-email-form button[type='submit']:hover {
+.contact button[type='submit']:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
@@ -1424,4 +1371,96 @@ section,
 
 .container:has(.img-3:hover) .image-wrapper {
   background-image: url('../img/03.webp');
+}
+
+/* Notificação */
+.notification-col {
+  display: none;
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  width: 340px;
+  max-width: 92vw;
+  z-index: 9999;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(-24px);
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--default-font);
+  font-size: 1rem;
+}
+
+.notification-col.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media only screen and (max-width: 600px) {
+  .notification-col {
+    top: 1.5rem;
+    right: 0.5rem;
+    width: 98vw;
+    max-width: 98vw;
+  }
+}
+
+.hideit {
+  display: none !important;
+}
+
+.alert-box {
+  padding: 1.2rem 2.2rem 1.2rem 1.4rem;
+  position: relative;
+  margin-bottom: 1.2rem;
+  border-radius: 8px;
+  font-family: var(--default-font);
+  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  letter-spacing: 0.01em;
+}
+
+.alert-box__close {
+  position: absolute;
+  right: 1.1rem;
+  top: 1.1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.alert-box__close:hover {
+  opacity: 1;
+}
+
+.alert-box--error {
+  background-color: #ffd1d2;
+  color: #e65153;
+  border-left: 5px solid #e65153;
+}
+
+.alert-box--success {
+  background-color: #e7f9e7;
+  color: #2e7d32;
+  border-left: 5px solid #2e7d32;
+}
+
+.alert-box--info {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border-left: 5px solid #1976d2;
+}
+
+.alert-box--notice {
+  background-color: #fff8e1;
+  color: #bba31b;
+  border-left: 5px solid #bba31b;
 }

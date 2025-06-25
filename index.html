@@ -36,6 +36,11 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <!-- Email JS
+    ================================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+
+
 </head>
 
 <body class="index-page">
@@ -80,9 +85,9 @@
               entregamos soluções rápidas e personalizadas.</p>
             <div class="d-flex">
               <a href="#contact" class="btn-get-started">Fale Conosco</a>
-              <a href="#" class="glightbox btn-watch-video d-flex align-items-center"><i
+              <!-- <a href="#" class="glightbox btn-watch-video d-flex align-items-center"><i
                   class="bi bi-play-circle"></i><span>Veja
-                  Nosso Processo</span></a>
+                  Nosso Processo</span></a> -->
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2">
@@ -304,7 +309,7 @@
                 <li>Impressão de até 100 unidades</li>
                 <li>Design simples</li>
               </ul>
-              <a href="#" class="btn-buy">Contratar</a>
+              <a href="#contact" class="btn-buy">Contratar</a>
             </div>
           </div><!-- End Pricing Item -->
 
@@ -320,7 +325,7 @@
                 <li>Impressão de 1.000 cartões de visita pesonalizados</li>
                 <li>Design personalizado</li>
               </ul>
-              <a href="#" class="btn-buy">Contratar</a>
+              <a href="#contact" class="btn-buy">Contratar</a>
             </div>
           </div><!-- End Pricing Item -->
 
@@ -335,7 +340,7 @@
                 <li>Impressão de até 1000 unidades</li>
                 <li>Consultoria de design</li>
               </ul>
-              <a href="#" class="btn-buy">Contratar</a>
+              <a href="#contact" class="btn-buy">Contratar</a>
             </div>
           </div><!-- End Pricing Item -->
 
@@ -386,31 +391,29 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="200">
+            <form class="php-email-form" id="contact-form" data-aos="fade-up" data-aos-delay="200"
+              onsubmit="sendMmail(event)">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Seu Nome" required="">
+                  <input type="text" id="sendername" name="name" class="form-control" placeholder="Seu Nome" required>
                 </div>
 
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Seu Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Assunto" required="">
+                <div class="col-md-6">
+                  <input type="email" id="to" name="email" class="form-control" placeholder="Seu Email" required>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Mensagem" required=""></textarea>
+                  <input type="text" id="subject" name="subject" class="form-control" placeholder="Assunto" required>
+                </div>
+
+                <div class="col-md-12">
+                  <textarea id="message" name="message" class="form-control" rows="6" placeholder="Mensagem"
+                    required></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Carregando</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
-
+                  <!-- Remova as divs de feedback daqui, pois o JS usa notification-col -->
                   <button type="submit">Enviar Mensagem</button>
                 </div>
 
@@ -418,6 +421,17 @@
             </form>
           </div><!-- End Contact Form -->
 
+        </div>
+
+        <div class="notification-col" style="display:none;">
+          <div class="alert-box alert-box--error hideit">
+            <button class="alert-box__close">×</button>
+            <p></p>
+          </div>
+          <div class="alert-box alert-box--success hideit">
+            <button class="alert-box__close">×</button>
+            <p></p>
+          </div>
         </div>
 
       </div>
@@ -466,14 +480,14 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <!-- Animação do mouse -->
-  <script src="assets/vendor/mouseanimate/mouse.js"></script>
+
+  <!-- Email JS -->
+  <script src="assets/js/email.js" defer></script>
 
 </body>
 
