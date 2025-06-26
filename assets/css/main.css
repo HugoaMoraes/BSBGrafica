@@ -497,8 +497,8 @@ h6 {
   bottom: 70px; /* Ajuste conforme necessário */
   z-index: 99999;
   background-color: #25d366;
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -507,7 +507,7 @@ h6 {
 }
 
 #whatsapp-button i {
-  font-size: 24px;
+  font-size: 28px;
   color: #ffffff;
   line-height: 0;
 }
@@ -652,6 +652,26 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 40%);
   font-weight: 400;
   margin-bottom: 30px;
+}
+
+.hero .btn-get-whatsapp {
+  color: var(--contrast-color);
+  background: #25d366;
+  font-family: var(--heading-font);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 12px 36px;
+  border-radius: 50px;
+  transition: 0.5s;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+  margin-left: 15px;
+}
+
+.hero .btn-get-whatsapp:hover {
+  background: color-mix(in srgb, #25d366, transparent 15%);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
 .hero .btn-get-started {
