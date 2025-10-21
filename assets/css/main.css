@@ -1392,6 +1392,10 @@ section,
   background-image: url('../img/03.webp');
 }
 
+.container:has(.img-4:hover) .image-wrapper {
+  background-image: url('../img/hero.webp');
+}
+
 /* Notificação */
 .notification-col {
   display: none;
@@ -1481,4 +1485,48 @@ section,
   background-color: #fff8e1;
   color: #bba31b;
   border-left: 5px solid #bba31b;
+}
+
+.map-iframe {
+  line-height: 0 !important;
+}
+
+.mapa {
+  padding: 0 !important;
+}
+
+.owl-carousel .item {
+  height: 350px; /* ajuste a altura que você quiser */
+}
+
+.owl-carousel .item img {
+  width: 100%; /* ocupa toda a largura da div */
+  height: 100%; /* ocupa toda a altura da div pai */
+  object-fit: cover; /* preenche sem deformar (corta se precisar) */
+  border-radius: 12px; /* arredonda os cantos */
+  display: block; /* remove possíveis espaçamentos extras */
+}
+
+.owl-dots {
+  text-align: center; /* Centraliza os dots */
+  margin-top: 15px; /* Espaço entre a imagem e os dots */
+}
+
+.owl-dots .owl-dot {
+  display: inline-block; /* Garante que fiquem lado a lado */
+  margin: 0 5px; /* Espaçamento entre os dots */
+}
+
+.owl-dots .owl-dot span {
+  width: 12px;
+  height: 12px;
+  background: #ccc; /* cor padrão */
+  border-radius: 50%; /* bolinha */
+  display: block;
+  transition: all 0.3s;
+}
+
+.owl-dots .owl-dot.active span {
+  background: var(--accent-color); /* cor ativa (azul Bootstrap, por exemplo) */
+  transform: scale(1.2); /* destaque na bolinha ativa */
 }
