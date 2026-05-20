@@ -1034,7 +1034,7 @@ section,
   z-index: 1;
   font-size: 14px;
   padding: 1px 0 3px 0;
-  background: var(--accent-color);
+  background: #f2cc0f;
   color: var(--contrast-color);
 }
 
@@ -1529,4 +1529,8 @@ section,
 .owl-dots .owl-dot.active span {
   background: var(--accent-color); /* cor ativa (azul Bootstrap, por exemplo) */
   transform: scale(1.2); /* destaque na bolinha ativa */
+}
+
+.margem {
+  margin-top: 3rem !important;
 }
