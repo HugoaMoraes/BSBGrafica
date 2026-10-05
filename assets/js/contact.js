@@ -1,10 +1,9 @@
 /**
- * Arquivo mantido para retrocompatibilidade de cache dos clientes.
- * Substitui o envio via EmailJS pelo canal oficial do WhatsApp.
- * Remove dependências antigas, chaves e toasts, utilizando reportValidity().
+ * Manipulador de envio de mensagem via WhatsApp para a BSB Gráfica
+ * Substitui o envio via EmailJS pelo canal direto de atendimento no WhatsApp.
  */
 
-function sendMmail(event) {
+function sendWhatsAppMessage(event) {
   if (event) {
     event.preventDefault();
   }
@@ -38,7 +37,8 @@ function sendMmail(event) {
   // Número oficial de atendimento da BSB Gráfica
   const phoneNumber = '5561991523982';
 
-  // Mensagem estruturada para WhatsApp com emojis e negrito
+  // Mensagem organizada com marcações para WhatsApp (negrito e emojis identificadores)
+  // Cabeçalho amigável & profissional
   const whatsappMessage = [
     '👋 *Olá, BSB Gráfica! Gostaria de solicitar um orçamento via site.*',
     '',
@@ -50,10 +50,11 @@ function sendMmail(event) {
     message,
   ].join('\n');
 
+  // Codificação segura para URL
   const encodedText = encodeURIComponent(whatsappMessage);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
 
-  // Abre diretamente a conversa no WhatsApp em uma nova aba
+  // Abre diretamente em nova aba do WhatsApp
   window.open(whatsappUrl, '_blank');
 
   // Limpa os campos do formulário
@@ -67,14 +68,14 @@ function sendMmail(event) {
   }
 }
 
-// Aliases globais
-window.sendMmail = sendMmail;
-window.sendWhatsAppMessage = sendMmail;
+// Aliases globais para retrocompatibilidade
+window.sendWhatsAppMessage = sendWhatsAppMessage;
+window.sendMmail = sendWhatsAppMessage;
 
-// Suporte a carregamento inicial do DOM
+// Vincula o ouvinte de submit ao carregar o DOM
 document.addEventListener('DOMContentLoaded', function () {
   const contactForm = document.querySelector('#contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', sendMmail);
+    contactForm.addEventListener('submit', sendWhatsAppMessage);
   }
 });

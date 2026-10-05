@@ -1199,12 +1199,21 @@ section,
 }
 
 .contact button[type='submit'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
   padding: 10px 30px;
   transition: 0.4s;
   border-radius: 12px;
+  font-weight: 500;
+}
+
+.contact button[type='submit'] i {
+  font-size: 1.15rem;
 }
 
 .contact button[type='submit']:hover {
@@ -1444,6 +1453,28 @@ section,
   line-height: 1.5;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   letter-spacing: 0.01em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+/* Toast e Alertas: estados interativos / clicáveis */
+.toast,
+.toast-clickable,
+.alert-box.clickable,
+.alert-box[role="button"],
+.toast[role="button"] {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.toast:hover,
+.toast-clickable:hover,
+.alert-box.clickable:hover,
+.alert-box[role="button"]:hover,
+.toast[role="button"]:hover {
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  opacity: 0.95;
 }
 
 .alert-box__close {
