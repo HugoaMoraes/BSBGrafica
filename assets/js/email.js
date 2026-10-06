@@ -1,80 +1,15 @@
 /**
  * Arquivo mantido para retrocompatibilidade de cache dos clientes.
- * Substitui o envio via EmailJS pelo canal oficial do WhatsApp.
- * Remove dependências antigas, chaves e toasts, utilizando reportValidity().
+ * Redireciona o envio para o canal oficial do WhatsApp da BSB Gráfica.
  */
 
 function sendMmail(event) {
-  if (event) {
-    event.preventDefault();
-  }
-
-  const form = document.querySelector('#contact-form');
-
-  // Validação nativa com a API do navegador (reportValidity)
-  if (form && typeof form.reportValidity === 'function') {
-    if (!form.reportValidity()) {
-      return;
-    }
-  }
-
-  const sendernameInput = document.querySelector('#sendername');
-  const toInput = document.querySelector('#to');
-  const subjectInput = document.querySelector('#subject');
-  const messageInput = document.querySelector('#message');
-
-  const sendername = sendernameInput ? sendernameInput.value.trim() : '';
-  const to = toInput ? toInput.value.trim() : '';
-  const subject = subjectInput ? subjectInput.value.trim() : '';
-  const message = messageInput ? messageInput.value.trim() : '';
-
-  if (!sendername || !to || !subject || !message) {
-    if (form && typeof form.reportValidity === 'function') {
-      form.reportValidity();
-    }
-    return;
-  }
-
-  // Número oficial de atendimento da BSB Gráfica
-  const phoneNumber = '5561991523982';
-
-  // Mensagem estruturada para WhatsApp com emojis e negrito
-  const whatsappMessage = [
-    '👋 *Olá, BSB Gráfica! Gostaria de solicitar um orçamento via site.*',
-    '',
-    `👤 *Nome:* ${sendername}`,
-    `📧 *E-mail:* ${to}`,
-    `📌 *Assunto:* ${subject}`,
-    '',
-    '💬 *Mensagem:*',
-    message,
-  ].join('\n');
-
-  const encodedText = encodeURIComponent(whatsappMessage);
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
-
-  // Abre diretamente a conversa no WhatsApp em uma nova aba
-  window.open(whatsappUrl, '_blank');
-
-  // Limpa os campos do formulário
-  if (form) {
-    form.reset();
-  } else {
-    if (sendernameInput) sendernameInput.value = '';
-    if (toInput) toInput.value = '';
-    if (subjectInput) subjectInput.value = '';
-    if (messageInput) messageInput.value = '';
+  if (typeof sendWhatsAppMessage === 'function') {
+    return sendWhatsAppMessage(event);
   }
 }
 
 // Aliases globais
 window.sendMmail = sendMmail;
-window.sendWhatsAppMessage = sendMmail;
-
-// Suporte a carregamento inicial do DOM
-document.addEventListener('DOMContentLoaded', function () {
-  const contactForm = document.querySelector('#contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', sendMmail);
-  }
-});
+window.sendWhatsAppMessage =
+  typeof sendWhatsAppMessage === 'function' ? sendWhatsAppMessage : sendMmail;

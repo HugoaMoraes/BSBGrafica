@@ -1,6 +1,6 @@
 /**
- * Manipulador de envio de mensagem via WhatsApp para a BSB Gráfica
- * Substitui o envio via EmailJS pelo canal direto de atendimento no WhatsApp.
+ * BSB Gráfica - Manipulador de envio de mensagem via WhatsApp
+ * Clean Code, validação robusta e conformidade com boas práticas.
  */
 
 function sendWhatsAppMessage(event) {
@@ -37,8 +37,7 @@ function sendWhatsAppMessage(event) {
   // Número oficial de atendimento da BSB Gráfica
   const phoneNumber = '5561991523982';
 
-  // Mensagem organizada com marcações para WhatsApp (negrito e emojis identificadores)
-  // Cabeçalho amigável & profissional
+  // Mensagem organizada e profissional para WhatsApp
   const whatsappMessage = [
     '👋 *Olá, BSB Gráfica! Gostaria de solicitar um orçamento via site.*',
     '',
@@ -54,8 +53,8 @@ function sendWhatsAppMessage(event) {
   const encodedText = encodeURIComponent(whatsappMessage);
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedText}`;
 
-  // Abre diretamente em nova aba do WhatsApp
-  window.open(whatsappUrl, '_blank');
+  // Abre com segurança a conversa do WhatsApp
+  window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
   // Limpa os campos do formulário
   if (form) {

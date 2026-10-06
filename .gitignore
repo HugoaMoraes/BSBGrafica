@@ -1,0 +1,8 @@
+# Arquivos de sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Backups de arquivos de mídia em alta resolução
+assets/img/backup_orig/

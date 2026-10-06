@@ -1,8 +1,9 @@
 /* Fonts */
 :root {
-  --default-font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --default-font:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', 'Liberation Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --heading-font: 'Inter', sans-serif;
   --nav-font: 'Inter', sans-serif;
 }
@@ -55,6 +56,50 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--accent-color);
   border-radius: 6px;
+}
+
+/* Acessibilidade: Skip Link para navegação por teclado */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  padding: 12px 20px;
+  z-index: 10000;
+  font-weight: 600;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+  color: #ffffff;
+}
+
+/* Acessibilidade: Foco visível (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+}
+
+/* Acessibilidade: Respeito à preferência de redução de movimento (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -240,6 +285,12 @@ h6 {
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .navmenu {
@@ -935,9 +986,9 @@ section,
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
-.pricing .pricing-tem {
+.pricing .pricing-tem,
+.pricing .pricing-item {
   background-color: var(--surface-color);
-  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
   padding: 40px 20px;
   text-align: center;
@@ -949,7 +1000,8 @@ section,
 }
 
 @media (min-width: 1200px) {
-  .pricing .pricing-tem:hover {
+  .pricing .pricing-tem:hover,
+  .pricing .pricing-item:hover {
     transform: scale(1.1);
   }
 }
@@ -1011,9 +1063,7 @@ section,
   padding: 8px 40px 10px 40px;
   border-radius: 12px;
   color: var(--accent-color);
-  transition: none;
   font-size: 16px;
-  font-weight: 400;
   font-family: var(--heading-font);
   font-weight: 600;
   transition: 0.3s;
@@ -1366,7 +1416,9 @@ section,
   left: 0;
   opacity: 0;
   transform: scale(0.95); /* Adiciona um leve zoom-out inicial */
-  transition: opacity 0.6s ease, transform 0.6s ease; /* Transições mais suaves */
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease; /* Transições mais suaves */
   width: 100%;
   z-index: 1;
 }
@@ -1388,20 +1440,28 @@ section,
   transition: background-image 0.5s ease;
 }
 
-/* Troca de imagem ao passar o mouse — usando combinador :has() (CSS moderno) */
-.container:has(.img-1:hover) .image-wrapper {
+/* Troca de imagem ao passar o mouse ou focar via teclado — usando combinador :has() */
+.container:has(.img-1:hover) .image-wrapper,
+.container:has(.img-1:focus-within) .image-wrapper,
+.container:has(.img-1.active) .image-wrapper {
   background-image: url('../img/01.webp');
 }
 
-.container:has(.img-2:hover) .image-wrapper {
+.container:has(.img-2:hover) .image-wrapper,
+.container:has(.img-2:focus-within) .image-wrapper,
+.container:has(.img-2.active) .image-wrapper {
   background-image: url('../img/02.webp');
 }
 
-.container:has(.img-3:hover) .image-wrapper {
+.container:has(.img-3:hover) .image-wrapper,
+.container:has(.img-3:focus-within) .image-wrapper,
+.container:has(.img-3.active) .image-wrapper {
   background-image: url('../img/03.webp');
 }
 
-.container:has(.img-4:hover) .image-wrapper {
+.container:has(.img-4:hover) .image-wrapper,
+.container:has(.img-4:focus-within) .image-wrapper,
+.container:has(.img-4.active) .image-wrapper {
   background-image: url('../img/hero.webp');
 }
 
@@ -1418,7 +1478,8 @@ section,
   padding: 0;
   opacity: 0;
   transform: translateY(-24px);
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 1rem;
 }
@@ -1453,24 +1514,30 @@ section,
   line-height: 1.5;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   letter-spacing: 0.01em;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* Toast e Alertas: estados interativos / clicáveis */
 .toast,
 .toast-clickable,
 .alert-box.clickable,
-.alert-box[role="button"],
-.toast[role="button"] {
+.alert-box[role='button'],
+.toast[role='button'] {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .toast:hover,
 .toast-clickable:hover,
 .alert-box.clickable:hover,
-.alert-box[role="button"]:hover,
-.toast[role="button"]:hover {
+.alert-box[role='button']:hover,
+.toast[role='button']:hover {
   cursor: pointer;
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
